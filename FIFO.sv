@@ -5,14 +5,24 @@
 // Description: FIFO Design 
 // 
 ////////////////////////////////////////////////////////////////////////////////
-module FIFO(data_in, wr_en, rd_en, clk, rst_n, full, empty, almostfull, almostempty, wr_ack, overflow, underflow, data_out);
-parameter FIFO_WIDTH = 16;
-parameter FIFO_DEPTH = 8;
-input [FIFO_WIDTH-1:0] data_in;
-input clk, rst_n, wr_en, rd_en;
-output reg [FIFO_WIDTH-1:0] data_out;
-output reg wr_ack, overflow;
-output full, empty, almostfull, almostempty, underflow;
+
+
+module FIFO #(parameter FIFO_WIDTH = 16, FIFO_DEPTH = 8) (FIFO_if fifo_if);
+
+assign clk = fifo_if.clk;
+assign rst_n = fifo_if.rst_n;
+assign wr_en = fifo_if.wr_en;
+assign rd_en = fifo_if.rd_en;
+assign data_in = fifo_if.data_in;
+
+assign fifo_if.data_out = data_out;
+assign fifo_if.wr_ack = wr_ack;
+assign fifo_if.overflow = overflow;
+assign fifo_if.full = full;
+assign fifo_if.empty = empty;
+assign fifo_if.almostfull = almostfull;
+assign fifo_if.almostempty = almostempty;
+assign fifo_if.underflow = underflow;
 
 localparam max_fifo_addr = $clog2(FIFO_DEPTH);
 
