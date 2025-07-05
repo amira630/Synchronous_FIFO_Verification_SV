@@ -7,7 +7,7 @@
 
 import shared_pkg::*;
 import FIFO_transaction_pkg::*;
-module FIFO_tb(FIFO_if fifo_if);
+module FIFO_tb(FIFO_if.TEST fifo_if);
     // Declare the local variables
     int i;
     int data;

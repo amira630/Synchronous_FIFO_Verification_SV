@@ -22,6 +22,11 @@ package FIFO_scoreboard_pkg;
         bit almostempty_ref;
         bit underflow_ref;
 
+        localparam max_fifo_addr = $clog2(FIFO_DEPTH);
+        logic [FIFO_WIDTH-1:0] mem_ref [FIFO_DEPTH-1:0];
+        logic [max_fifo_addr-1:0] wr_ptr_ref, rd_ptr_ref;
+        logic [max_fifo_addr:0] count_ref;
+
         // Constructor
         function new();
             F_sb_txn = new();
@@ -116,12 +121,77 @@ package FIFO_scoreboard_pkg;
                 wr_ack_ref = 1'b0;
                 overflow_ref = 1'b0;
                 full_ref = 1'b0;
-                empty_ref = 1'b0;
+                empty_ref = 1'b1;
                 almostfull_ref = 1'b0;
                 almostempty_ref = 1'b0;
                 underflow_ref = 1'b0;
+                wr_ptr_ref = 0;
+                rd_ptr_ref = 0;
             end
-            else begin
+            else begin 
+                if (wr_en) begin
+                    if (count_ref < FIFO_DEPTH) begin
+                        mem_ref[wr_ptr_ref] = data_in;
+                        wr_ack_ref = 1'b1;
+                        wr_ptr_ref = wr_ptr_ref + 1;
+                        overflow_ref = 1'b0; // No overflow if not full
+                        count_ref++;
+                    end
+                    else begin
+                        if(count_ref > FIFO_DEPTH) begin
+                            overflow_ref = 1'b1; // Overflow if trying to write when full
+                            full_ref = 1'b1;
+                            almostfull_ref = 1'b0;
+                        end
+                        else begin
+                            overflow_ref = 1'b0; // No overflow if not full
+                            if (count_ref == FIFO_DEPTH) begin
+                                full_ref = 1'b1;
+                                almostfull_ref = 1'b0; // Not almost full if full
+                            end
+                            else if (count_ref == FIFO_DEPTH - 1) begin
+                                full_ref = 1'b0;
+                                almostfull_ref = 1'b1; // Almost full if one less than full
+                            end
+                            else begin
+                                full_ref = 1'b0;
+                                almostfull_ref = 1'b0;
+                            end
+                        end
+                        wr_ack_ref = 1'b0;
+                    end
+                end
+                else begin
+                    wr_ack_ref = 1'b0;
+                end
+                if (rd_en) begin
+                    if (count_ref > 0) begin
+                        data_out_ref = mem_ref[rd_ptr_ref];
+                        rd_ptr_ref = rd_ptr_ref + 1;
+                        count_ref--;
+                        if(count_ref == 0) begin
+                            empty_ref = 1'b1; // Empty if no data left
+                        end
+                        else begin
+                            empty_ref = 1'b0; // Not empty if there is data
+                        end
+                    end
+                    else begin
+                        // data_out_ref = 16'b0;
+                        if (count_ref == 1) begin
+                            almostempty_ref = 1'b1;
+                            underflow_ref = 1'b0; // Underflow if trying to read when empty
+                        end
+                        else if (count_ref == 0) begin
+                            almostempty_ref = 1'b0;
+                            underflow_ref = 1'b1; // No underflow if empty
+                        end
+                        else begin
+                            almostempty_ref = 1'b0;
+                            underflow_ref = 1'b0; // Underflow if trying to read when empty
+                        end
+                    end
+                end
             end
         endfunction
     endclass : FIFO_scoreboard

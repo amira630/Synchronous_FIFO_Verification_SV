@@ -5,7 +5,7 @@
 // Description: Monitor module for FIFO Design Verification
 ////////////////////////////////////////////////////////////////////////////////
 
-module FIFO_monitor(FIFO_if fifo_if);
+module FIFO_monitor(FIFO_if.MONITOR fifo_if);
     import shared_pkg::*;
     import FIFO_transaction_pkg::*;
     import FIFO_scoreboard_pkg::*;
