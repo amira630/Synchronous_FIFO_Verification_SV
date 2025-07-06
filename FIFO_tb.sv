@@ -26,7 +26,7 @@ module FIFO_tb(FIFO_if.TEST fifo_if);
         trns = new();
 
         // Generate test data
-        for (i = 0; i < 200; i++) begin
+        for (i = 0; i < 1000; i++) begin
             assert(trns.randomize);
             fifo_if.rst_n = trns.rst_n;
             fifo_if.wr_en = trns.wr_en;
@@ -34,6 +34,8 @@ module FIFO_tb(FIFO_if.TEST fifo_if);
             fifo_if.data_in = trns.data_in;
             @(negedge fifo_if.clk);
         end
+
+        @(negedge fifo_if.clk);
         // Finish the test after writing all data
         test_finished = 1;
     end
@@ -61,10 +63,8 @@ module FIFO_tb(FIFO_if.TEST fifo_if);
 
     task reset;
         begin
-            fifo_if.rst_n = 1'b1;
-            @(negedge fifo_if.clk);
             fifo_if.rst_n = 1'b0;
-            @(negedge fifo_if.clk);
+            repeat(2) @(negedge fifo_if.clk); // Hold reset for 2 cycles
             fifo_if.rst_n = 1'b1;
             fifo_if.wr_en = 1'b0; // Disable write enable after reset
         end

@@ -28,40 +28,38 @@ package FIFO_coverage_pkg;
             underflow_c:    coverpoint F_cvg_txn.underflow;
 
             // Cross coverage for write and read enable signals
+
+            wr_ack_cross: cross wr_en_c, rd_en_c, wr_ack_c {
+                ignore_bins read_wr_ack = binsof(wr_en_c) intersect {0} && binsof(rd_en_c) intersect {1} && binsof(wr_ack_c) intersect {1};
+                ignore_bins write_read_wr_ack = binsof(wr_en_c) intersect {0} && binsof(wr_ack_c) intersect {1};
+            }
+
             overflow_cross: cross wr_en_c, rd_en_c, overflow_c {
-                bins read_overflow = binsof(rd_en_c) && binsof(overflow_c);
-                bins write_overflow = binsof(wr_en_c) && binsof(overflow_c);
-                option.cross_auto_bin_max = 0;
+                ignore_bins write_overflow = binsof(wr_en_c) intersect {0} && binsof(overflow_c) intersect {1};
             }
 
             full_cross: cross wr_en_c, rd_en_c, full_c {
-                bins read_full = binsof(rd_en_c) && binsof(full_c);
-                bins write_full = binsof(wr_en_c) && binsof(full_c);
-                option.cross_auto_bin_max = 0;
+                ignore_bins write_full = binsof(wr_en_c) intersect {0} && binsof(full_c) intersect {1};
+                ignore_bins read_full = binsof(rd_en_c) intersect {1} && binsof(full_c) intersect {1};
             }
             
             empty_cross: cross wr_en_c, rd_en_c, empty_c {
-                bins read_empty = binsof(rd_en_c) && binsof(empty_c);
-                bins write_empty = binsof(wr_en_c) && binsof(empty_c);
-                option.cross_auto_bin_max = 0;
+                ignore_bins read_empty = binsof(rd_en_c) intersect {0} && binsof(empty_c) intersect {1};
             }
 
             almostfull_cross: cross wr_en_c, rd_en_c, almostfull_c {
-                bins read_almostfull = binsof(rd_en_c) && binsof(almostfull_c);
-                bins write_almostfull = binsof(wr_en_c) && binsof(almostfull_c);
-                option.cross_auto_bin_max = 0;
+                ignore_bins read_write_almostfull = binsof(wr_en_c) intersect {0} && binsof(rd_en_c) intersect {1} && binsof(almostfull_c) intersect {1};
+                ignore_bins write_almostfull = binsof(wr_en_c) intersect {0} && binsof(almostfull_c) intersect {1};
             }   
 
             almostempty_cross: cross wr_en_c, rd_en_c, almostempty_c {
-                bins read_almostempty = binsof(rd_en_c) && binsof(almostempty_c);
-                bins write_almostempty = binsof(wr_en_c) && binsof(almostempty_c);
-                option.cross_auto_bin_max = 0;
+                ignore_bins read_almostempty = binsof(rd_en_c) intersect {0} && binsof(almostempty_c) intersect {1};
+                ignore_bins write_read_almostempty = binsof(rd_en_c) intersect {0} && binsof(wr_en_c) intersect {1} && binsof(almostempty_c) intersect {1};
             }
 
             underflow_cross: cross wr_en_c, rd_en_c, underflow_c {
-                bins read_underflow = binsof(rd_en_c) && binsof(underflow_c);
-                bins write_underflow = binsof(wr_en_c) && binsof(underflow_c);
-                option.cross_auto_bin_max = 0;
+                ignore_bins read_underflow = binsof(rd_en_c) intersect {0} && binsof(underflow_c) intersect {1};
+                ignore_bins write_underflow = binsof(wr_en_c) intersect {1} && binsof(underflow_c) intersect {1};
             }
         endgroup : FIFO_cvr_grp
 

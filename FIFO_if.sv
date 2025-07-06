@@ -5,13 +5,12 @@
 // Description: Interface for FIFO Design
 ////////////////////////////////////////////////////////////////////////////////
 
-interface FIFO_if #(parameter FIFO_WIDTH = 16) (clk);
+interface FIFO_if #(parameter FIFO_WIDTH = 16) (input bit clk);
     
     /////////////////////////////////////////////////////////
     /////////// Interface Signal Declaration ////////////////
     /////////////////////////////////////////////////////////
     
-    input bit clk;
     logic [FIFO_WIDTH-1:0] data_in;
     logic rst_n, wr_en, rd_en;
     logic [FIFO_WIDTH-1:0] data_out;

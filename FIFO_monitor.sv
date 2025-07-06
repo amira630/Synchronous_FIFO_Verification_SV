@@ -5,16 +5,20 @@
 // Description: Monitor module for FIFO Design Verification
 ////////////////////////////////////////////////////////////////////////////////
 
+import shared_pkg::*;
+import FIFO_transaction_pkg::*;
+import FIFO_scoreboard_pkg::*;
+import FIFO_coverage_pkg::*;
+
 module FIFO_monitor(FIFO_if.MONITOR fifo_if);
-    import shared_pkg::*;
-    import FIFO_transaction_pkg::*;
-    import FIFO_scoreboard_pkg::*;
-    import FIFO_coverage_pkg::*;
+    FIFO_transaction trns;
+    FIFO_scoreboard sb;
+    FIFO_coverage cov;
 
     initial begin
-        FIFO_transaction trns = new();
-        FIFO_scoreboard sb = new();
-        FIFO_coverage cov = new();
+        trns = new();
+        sb = new();
+        cov = new();
 
         forever begin
             @(negedge fifo_if.clk);
@@ -22,6 +26,7 @@ module FIFO_monitor(FIFO_if.MONITOR fifo_if);
             trns.wr_en = fifo_if.wr_en;
             trns.rd_en = fifo_if.rd_en;
             trns.data_in = fifo_if.data_in;
+
             trns.data_out = fifo_if.data_out;
             trns.wr_ack = fifo_if.wr_ack;
             trns.overflow = fifo_if.overflow;
@@ -32,6 +37,7 @@ module FIFO_monitor(FIFO_if.MONITOR fifo_if);
             trns.underflow = fifo_if.underflow;
             fork
                 begin
+                    @(posedge fifo_if.clk);
                     sb.check_data(trns);
                 end
                 begin

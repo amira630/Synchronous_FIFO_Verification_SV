@@ -29,11 +29,11 @@ package FIFO_transaction_pkg;
         } // Reset is active low
 
         constraint c_wr_en {
-            wr_en dist { 0 := (100 - WR_EN_ON_DISTANCE), 1 := WR_EN_ON_DISTANCE; }; // Write enable signal
+            wr_en dist { 1'b0 := (100 - WR_EN_ON_DISTANCE), 1'b1 := WR_EN_ON_DISTANCE}; // Write enable signal
         }       
 
         constraint c_rd_en {
-            rd_en dist { 0 := (100 - RD_EN_ON_DISTANCE), 1 := RD_EN_ON_DISTANCE; }; // Read enable signal
+            rd_en dist { 1'b0 := (100 - RD_EN_ON_DISTANCE), 1'b1 := RD_EN_ON_DISTANCE}; // Read enable signal
         }
 
     endclass

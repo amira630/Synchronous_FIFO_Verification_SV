@@ -1,0 +1,76 @@
+# Top level modules:
+# 	top
+# Coverage Report by instance with details
+# 
+# =================================================================================
+# === Instance: /top/DUT
+# === Design Unit: work.FIFO
+# =================================================================================
+# 
+# Assertion Coverage:
+#     Assertions                       9         9         0   100.00%
+# --------------------------------------------------------------------
+# Name                 File(Line)                   Failure      Pass 
+#                                                   Count        Count
+# --------------------------------------------------------------------
+# /top/DUT/assert__count_rd_prop
+#                      FIFO.sv(141)                       0          1
+# /top/DUT/assert__count_wr_prop
+#                      FIFO.sv(140)                       0          1
+# /top/DUT/assert__almostempty_prop
+#                      FIFO.sv(139)                       0          1
+# /top/DUT/assert__almostfull_prop
+#                      FIFO.sv(138)                       0          1
+# /top/DUT/assert__empty_prop
+#                      FIFO.sv(137)                       0          1
+# /top/DUT/assert__full_prop
+#                      FIFO.sv(136)                       0          1
+# /top/DUT/assert__wr_ack_prop
+#                      FIFO.sv(135)                       0          1
+# /top/DUT/assert__underflow_prop
+#                      FIFO.sv(134)                       0          1
+# /top/DUT/assert__overflow_prop
+#                      FIFO.sv(133)                       0          1
+# 
+# =================================================================================
+# === Instance: /top/tb
+# === Design Unit: work.FIFO_tb
+# =================================================================================
+# 
+# Assertion Coverage:
+#     Assertions                       1         1         0   100.00%
+# --------------------------------------------------------------------
+# Name                 File(Line)                   Failure      Pass 
+#                                                   Count        Count
+# --------------------------------------------------------------------
+# /top/tb/#ublk#182146786#29/immed__30
+#                      FIFO_tb.sv(30)                     0          1
+# 
+# 
+# ASSERTION RESULTS:
+# --------------------------------------------------------------------
+# Name                 File(Line)                   Failure      Pass 
+#                                                   Count        Count
+# --------------------------------------------------------------------
+# /top/DUT/assert__count_rd_prop
+#                      FIFO.sv(141)                       0          1
+# /top/DUT/assert__count_wr_prop
+#                      FIFO.sv(140)                       0          1
+# /top/DUT/assert__almostempty_prop
+#                      FIFO.sv(139)                       0          1
+# /top/DUT/assert__almostfull_prop
+#                      FIFO.sv(138)                       0          1
+# /top/DUT/assert__empty_prop
+#                      FIFO.sv(137)                       0          1
+# /top/DUT/assert__full_prop
+#                      FIFO.sv(136)                       0          1
+# /top/DUT/assert__wr_ack_prop
+#                      FIFO.sv(135)                       0          1
+# /top/DUT/assert__underflow_prop
+#                      FIFO.sv(134)                       0          1
+# /top/DUT/assert__overflow_prop
+#                      FIFO.sv(133)                       0          1
+# /top/tb/#ublk#182146786#29/immed__30
+#                      FIFO_tb.sv(30)                     0          1
+# 
+# Total Coverage By Instance (filtered view): 100.00%
