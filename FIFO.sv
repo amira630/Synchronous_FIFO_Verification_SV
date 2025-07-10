@@ -103,6 +103,22 @@ assign almostempty = (count == 1)? 1 : 0;
 
 `ifdef SIM
 	// Assertions and coverage for FIFO behavior
+	logic rst_deasserted;
+
+	always @(posedge clk or negedge rst_n) begin
+		if (!rst_n)
+			rst_deasserted <= 1'b0;
+		else
+			rst_deasserted <= 1'b1;
+	end
+
+	always @(posedge clk) begin
+		if (!rst_deasserted) begin
+			assert (data_out == 0 && empty && !almostfull && !almostempty && !underflow && !overflow && !full && !wr_ack && count == 0)
+				else $error("Reset values incorrect at time %0t", $time);
+		end
+	end
+
 	property overflow_prop;
 		@(posedge clk) disable iff (~rst_n) (wr_en && full) |=> overflow ;
 	endproperty

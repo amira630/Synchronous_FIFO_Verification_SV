@@ -6,29 +6,31 @@ Coverage Report by instance with details
 =================================================================================
 
 Assertion Coverage:
-    Assertions                       9         9         0   100.00%
+    Assertions                      10        10         0   100.00%
 --------------------------------------------------------------------
 Name                 File(Line)                   Failure      Pass 
                                                   Count        Count
 --------------------------------------------------------------------
 /top/DUT/assert__count_rd_prop
-                     FIFO.sv(150)                       0          1
+                     FIFO.sv(166)                       0          1
 /top/DUT/assert__count_wr_prop
-                     FIFO.sv(149)                       0          1
+                     FIFO.sv(165)                       0          1
 /top/DUT/assert__almostempty_prop
-                     FIFO.sv(148)                       0          1
+                     FIFO.sv(164)                       0          1
 /top/DUT/assert__almostfull_prop
-                     FIFO.sv(147)                       0          1
+                     FIFO.sv(163)                       0          1
 /top/DUT/assert__empty_prop
-                     FIFO.sv(146)                       0          1
+                     FIFO.sv(162)                       0          1
 /top/DUT/assert__full_prop
-                     FIFO.sv(145)                       0          1
+                     FIFO.sv(161)                       0          1
 /top/DUT/assert__wr_ack_prop
-                     FIFO.sv(144)                       0          1
+                     FIFO.sv(160)                       0          1
 /top/DUT/assert__underflow_prop
-                     FIFO.sv(143)                       0          1
+                     FIFO.sv(159)                       0          1
 /top/DUT/assert__overflow_prop
-                     FIFO.sv(142)                       0          1
+                     FIFO.sv(158)                       0          1
+/top/DUT/#ublk#306607#116/immed__117
+                     FIFO.sv(117)                       0          1
 
 =================================================================================
 === Instance: /top/tb
@@ -51,25 +53,26 @@ Name                 File(Line)                   Failure      Pass
                                                   Count        Count
 --------------------------------------------------------------------
 /top/DUT/assert__count_rd_prop
-                     FIFO.sv(150)                       0          1
+                     FIFO.sv(166)                       0          1
 /top/DUT/assert__count_wr_prop
-                     FIFO.sv(149)                       0          1
+                     FIFO.sv(165)                       0          1
 /top/DUT/assert__almostempty_prop
-                     FIFO.sv(148)                       0          1
+                     FIFO.sv(164)                       0          1
 /top/DUT/assert__almostfull_prop
-                     FIFO.sv(147)                       0          1
+                     FIFO.sv(163)                       0          1
 /top/DUT/assert__empty_prop
-                     FIFO.sv(146)                       0          1
+                     FIFO.sv(162)                       0          1
 /top/DUT/assert__full_prop
-                     FIFO.sv(145)                       0          1
+                     FIFO.sv(161)                       0          1
 /top/DUT/assert__wr_ack_prop
-                     FIFO.sv(144)                       0          1
+                     FIFO.sv(160)                       0          1
 /top/DUT/assert__underflow_prop
-                     FIFO.sv(143)                       0          1
+                     FIFO.sv(159)                       0          1
 /top/DUT/assert__overflow_prop
-                     FIFO.sv(142)                       0          1
+                     FIFO.sv(158)                       0          1
+/top/DUT/#ublk#306607#116/immed__117
+                     FIFO.sv(117)                       0          1
 /top/tb/#ublk#182146786#29/immed__30
                      FIFO_tb.sv(30)                     0          1
 
 Total Coverage By Instance (filtered view): 100.00%
-
