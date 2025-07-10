@@ -63,10 +63,18 @@ always @(posedge clk or negedge rst_n) begin
 	if (!rst_n) begin
 		rd_ptr <= 0;
 		data_out <= 0;  //data_out was not reset
+		underflow <= 0; // rst_n was not accounted for
 	end
 	else if (rd_en && count != 0) begin 
 		data_out <= mem[rd_ptr];
 		rd_ptr <= rd_ptr + 1;
+		underflow <= 1'b0; 
+	end
+	else if (rd_en) begin
+		underflow <= 1'b1;
+	end
+	else begin
+		underflow <= 1'b0; 
 	end
 end
 
@@ -89,8 +97,7 @@ always @(posedge clk or negedge rst_n) begin
 end
 
 assign full = (count == FIFO_DEPTH)? 1 : 0;
-assign empty = (count == 0)? 1 : 0; 
-assign underflow = (empty && rd_en)? 1 : 0; 
+assign empty = (count == 0)? 1 : 0; // underflow was placed inside read always block
 assign almostfull = (count == FIFO_DEPTH-1)? 1 : 0; // it was FIFO_DEPTH-2, almostfull means 1 element can be added
 assign almostempty = (count == 1)? 1 : 0;
 
@@ -101,7 +108,7 @@ assign almostempty = (count == 1)? 1 : 0;
 	endproperty
 
 	property underflow_prop;
-		@(posedge clk) disable iff (~rst_n) (rd_en && empty) |-> underflow ;
+		@(posedge clk) disable iff (~rst_n) (rd_en && empty) |=> underflow ;
 	endproperty
 
 	property wr_ack_prop;
