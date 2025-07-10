@@ -281,7 +281,7 @@ Name                                     Design Design   Lang File(Line)      Hi
 /\top#DUT /cover__count_rd_prop          FIFO   Verilog  SVA  FIFO.sv(153)     100 Covered   
 /\top#DUT /cover__count_wr_prop          FIFO   Verilog  SVA  FIFO.sv(152)     370 Covered   
 /\top#DUT /cover__almostempty_prop       FIFO   Verilog  SVA  FIFO.sv(151)     184 Covered   
-/\top#DUT /cover__almostfull_prop        FIFO   Verilog  SVA  FIFO.sv(150)     106 Covered   
+/\top#DUT /cover__almostfull_prop        FIFO   Verilog  SVA  FIFO.sv(150)     105 Covered   
 /\top#DUT /cover__empty_prop             FIFO   Verilog  SVA  FIFO.sv(149)     158 Covered   
 /\top#DUT /cover__full_prop              FIFO   Verilog  SVA  FIFO.sv(148)      95 Covered   
 /\top#DUT /cover__wr_ack_prop            FIFO   Verilog  SVA  FIFO.sv(147)     496 Covered   
@@ -306,7 +306,7 @@ Statement Coverage for instance /\top#DUT  --
     14                                               logic [FIFO_WIDTH-1:0] data_out;
     15                                               
     16                                               // Interface signals
-    17              1                       2008     assign clk = fifo_if.clk;
+    17              1                       2006     assign clk = fifo_if.clk;
     18              1                        185     assign rst_n = fifo_if.rst_n;
     19              1                        413     assign wr_en = fifo_if.wr_en;
     20              1                        456     assign rd_en = fifo_if.rd_en;
@@ -429,7 +429,7 @@ Name                                     Design Design   Lang File(Line)      Hi
 /\top#DUT /cover__count_rd_prop          FIFO   Verilog  SVA  FIFO.sv(153)     100 Covered   
 /\top#DUT /cover__count_wr_prop          FIFO   Verilog  SVA  FIFO.sv(152)     370 Covered   
 /\top#DUT /cover__almostempty_prop       FIFO   Verilog  SVA  FIFO.sv(151)     184 Covered   
-/\top#DUT /cover__almostfull_prop        FIFO   Verilog  SVA  FIFO.sv(150)     106 Covered   
+/\top#DUT /cover__almostfull_prop        FIFO   Verilog  SVA  FIFO.sv(150)     105 Covered   
 /\top#DUT /cover__empty_prop             FIFO   Verilog  SVA  FIFO.sv(149)     158 Covered   
 /\top#DUT /cover__full_prop              FIFO   Verilog  SVA  FIFO.sv(148)      95 Covered   
 /\top#DUT /cover__wr_ack_prop            FIFO   Verilog  SVA  FIFO.sv(147)     496 Covered   

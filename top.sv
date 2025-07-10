@@ -6,6 +6,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 `timescale 1ns / 1ps
+
+import shared_pkg::*;
 module top();
 
     ////////////////////////////////////////////////////////
@@ -21,9 +23,9 @@ module top();
             #5 clk = ~clk; // Clock period of 10 time units
     end
 
-    FIFO_if #(.FIFO_WIDTH(16)) fifo_if (clk);
+    FIFO_if #(.FIFO_WIDTH(FIFO_WIDTH)) fifo_if (clk);
 
-    FIFO #(.FIFO_WIDTH(16), .FIFO_DEPTH(8)) DUT (fifo_if);
+    FIFO #(.FIFO_WIDTH(FIFO_WIDTH), .FIFO_DEPTH(FIFO_DEPTH)) DUT (fifo_if);
 
     FIFO_tb tb (fifo_if);
 

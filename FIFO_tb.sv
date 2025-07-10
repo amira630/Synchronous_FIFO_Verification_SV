@@ -35,7 +35,6 @@ module FIFO_tb(FIFO_if.TEST fifo_if);
             @(negedge fifo_if.clk);
         end
 
-        @(negedge fifo_if.clk);
         // Finish the test after writing all data
         test_finished = 1;
     end
